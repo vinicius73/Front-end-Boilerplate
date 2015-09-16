@@ -4,61 +4,10 @@ var path = require('path');
 var notify = require("gulp-notify");
 var _ = require('lodash');
 
-var applyBowerPath = function(_string)
-{
-    if(_.isArray(_string)) {
-        return _string.map(applyBowerPath);
-    }
-    return './bower_components/' + _string;
-}
+//-- OPTIONS
+var options = require('./gulpOptions.js');
 
-var applyFontsFilter = function(_string)
-{
-    if(_.isArray(_string)) {
-        return _string.map(applyFontsFilter);
-    }
-    return _string + '.{eot,svg,ttf,woff,woff2}';
-}
-
-var applyImagesFilter = function(_string)
-{
-    if(_.isArray(_string)) {
-        return _string.map(applyImagesFilter);
-    }
-    return _string + '.{jpg,svg,gif,png,jpeg}';
-}
-
-var options = {
-    vendors: {
-        js: applyBowerPath([
-            'modernizr/modernizr.js',
-            'jquery/dist/jquery.min.js',
-            'jquery-migrate/jquery-migrate.min.js',
-            'bootstrap-sass/assets/javascripts/bootstrap.min.js'
-        ]),
-        css: applyBowerPath([
-
-        ]),
-    },
-    sources: {
-        root: './source',
-        sass: './source/sass/main.scss',
-        js: './source/scripts',
-        fonts: applyFontsFilter([
-                './source/fonts/*',
-                './bower_components/**/*'
-            ]),
-        images: applyImagesFilter(['./source/images/**/*'])
-    },
-    dest: {
-        root: './assets',
-        css: './assets/css',
-        js: './assets/scripts',
-        fonts: './assets/fonts',
-        images: './assets/images',
-    }
-};
-
+//-- BANNER
 options.banner = ['/*!',
     ' * My Project',
     ' * @version v0.1.' + Date.now(),
@@ -73,7 +22,7 @@ options.args = require('yargs')
     .default('production', false)
     .argv;
 
-// -- NOTIFY
+//-- NOTIFY
 options.notify = function (_message) {
     var options = {
         title: 'Your Project',
@@ -89,7 +38,6 @@ options.notify = function (_message) {
     return notify(options);
 };
 
-
 //-- LOAD TASKS
 wrench.readdirSyncRecursive('./gulpTasks').filter(function (file) {
     return (/\.(js|coffee)$/i).test(file);
@@ -97,4 +45,5 @@ wrench.readdirSyncRecursive('./gulpTasks').filter(function (file) {
     require('./gulpTasks/' + file)(options);
 });
 
+//-- TASKS
 gulp.task('default', ['styles:main', 'scripts:vendor', 'copy']);
