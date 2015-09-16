@@ -46,4 +46,4 @@ wrench.readdirSyncRecursive('./gulpTasks').filter(function (file) {
 });
 
 //-- TASKS
-gulp.task('default', ['styles:main', 'scripts:vendor', 'copy']);
+gulp.task('default', ['styles:main', 'scripts', 'copy']);

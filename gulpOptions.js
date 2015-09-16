@@ -37,7 +37,7 @@ module.exports = (function() {
     var sources = {
         root: './source',
         sass: './source/sass/main.scss',
-        js: './source/scripts',
+        js: ['./source/scripts/main.js'],
         fonts: applyFontsFilter([
             './source/fonts/*',
             './bower_components/**/*'
