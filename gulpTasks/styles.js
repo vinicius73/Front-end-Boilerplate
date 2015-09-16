@@ -2,10 +2,9 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var sass = require('gulp-sass');
 
 module.exports = function (_options) {
-    //-- FRONT
+    //-- MAIN
     gulp.task('styles:main', function () {
         var dest = _options.dest.css;
         var src = _options.sources.sass;
@@ -13,7 +12,7 @@ module.exports = function (_options) {
 
         return gulp.src(src)
             .pipe($.if(!isProduction, $.sourcemaps.init()))
-            .pipe(sass().on('error', sass.logError))
+            .pipe($.sass().on('error', $.sass.logError))
             .pipe(_options.notify('Styles have been compiled'))
             .pipe($.if(isProduction, $.stripCssComments({preserve:false})))
             .pipe($.if(isProduction, $.csso()))
