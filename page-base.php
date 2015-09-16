@@ -7,12 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- build:css assets/css/frontend.min.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
     <link rel="stylesheet" href="assets/css/main.css">
-    <!-- endbuild -->
-    <script src="assets/vendor/modernizr.js"></script>
 </head>
 <body>
 
@@ -46,13 +41,7 @@
 </div>
 <!-- /#footer -->
 
-<script src="assets/vendor/jquery.min.js"></script>
-<script src="assets/vendor/jquery-migrate.min.js"></script>
-<!-- build:js assets/script/frontend.min.js -->
-<!-- bower:js -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<!-- endbower -->
-<script src="source/scripts/frontend.js"></script>
-<!-- endbuild -->
+<script src="assets/scripts/vendors.js"></script>
+<script src="assets/scripts/main.js"></script>
 </body>
 </html>
