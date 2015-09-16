@@ -12,6 +12,22 @@ var applyBowerPath = function(_string)
     return './bower_components/' + _string;
 }
 
+var applyFontsFilter = function(_string)
+{
+    if(_.isArray(_string)) {
+        return _string.map(applyFontsFilter);
+    }
+    return _string + '.{eot,svg,ttf,woff,woff2}';
+}
+
+var applyImagesFilter = function(_string)
+{
+    if(_.isArray(_string)) {
+        return _string.map(applyImagesFilter);
+    }
+    return _string + '.{jpg,svg,gif,png,jpeg}';
+}
+
 var options = {
     vendors: {
         js: applyBowerPath([
@@ -25,19 +41,20 @@ var options = {
         ]),
     },
     sources: {
-        root: './sources',
+        root: './source',
         sass: './source/sass/main.scss',
-        js: './sources/scripts',
-        fonts: [
-                './sources/fonts/*.{eot,svg,ttf,woff,woff2}',
-                './bower_components/**/*.{eot,svg,ttf,woff,woff2}'
-            ],
-        images: './sources/images/**/*.{jpg,svg,gif,png,jpeg}'
+        js: './source/scripts',
+        fonts: applyFontsFilter([
+                './source/fonts/*',
+                './bower_components/**/*'
+            ]),
+        images: applyImagesFilter(['./source/images/**/*'])
     },
     dest: {
         root: './assets',
         css: './assets/css',
         js: './assets/scripts',
+        fonts: './assets/fonts',
         images: './assets/images',
     }
 };
@@ -80,4 +97,4 @@ wrench.readdirSyncRecursive('./gulpTasks').filter(function (file) {
     require('./gulpTasks/' + file)(options);
 });
 
-gulp.task('default', ['styles:main', 'scripts:vendor']);
+gulp.task('default', ['styles:main', 'scripts:vendor', 'copy']);

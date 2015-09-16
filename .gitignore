@@ -3,10 +3,12 @@
 node_modules
 bower_components
 .tmp
+*.map
 /dist
 /assets/css
 /assets/images
 /assets/scripts
+/assets/fonts
 /source/sass/_libs.scss
 /source/sass/_modules.scss
 /source/sass/_components.scss
