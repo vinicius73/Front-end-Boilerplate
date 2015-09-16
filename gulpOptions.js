@@ -53,9 +53,16 @@ module.exports = (function() {
         images: './assets/images',
     };
 
+    var watch = {
+        js: './source/scripts/**/*.js',
+        styles: './source/sass/**/*.{css,scss,sass}',
+        images: applyImagesFilter('./source/scripts/**/*'),
+    }
+
     return {
         vendors: vendors,
         sources: sources,
-        dest: dest
+        dest: dest,
+        watch: watch
     };
 })();
