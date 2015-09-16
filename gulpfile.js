@@ -27,7 +27,7 @@ var options = {
     sources: {
         root: './sources',
         sass: './source/sass/main.scss',
-        js: './sources/js',
+        js: './sources/scripts',
         fonts: [
                 './sources/fonts/*.{eot,svg,ttf,woff,woff2}',
                 './bower_components/**/*.{eot,svg,ttf,woff,woff2}'
@@ -37,7 +37,7 @@ var options = {
     dest: {
         root: './assets',
         css: './assets/css',
-        js: './assets/js',
+        js: './assets/scripts',
         images: './assets/images',
     }
 };
@@ -80,4 +80,4 @@ wrench.readdirSyncRecursive('./gulpTasks').filter(function (file) {
     require('./gulpTasks/' + file)(options);
 });
 
-gulp.task('default', ['styles:main']);
+gulp.task('default', ['styles:main', 'scripts:vendor']);
