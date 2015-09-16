@@ -5,7 +5,7 @@ var $ = require('gulp-load-plugins')();
 
 module.exports = function (_options) {
     // -- FONTS
-    gulp.task('copy:fonts', function () {
+    gulp.task('copy:fonts', ['clean:fonts'], function () {
         var dest = _options.dest.fonts;
         var src = _options.sources.fonts;
 
@@ -14,7 +14,8 @@ module.exports = function (_options) {
             .pipe(gulp.dest(dest));
     });
 
-    gulp.task('copy:images', function () {
+    // -- IMAGES
+    gulp.task('copy:images', ['clean:images'], function () {
         var dest = _options.dest.images;
         var src = _options.sources.images;
 

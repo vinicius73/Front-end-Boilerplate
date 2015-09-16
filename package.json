@@ -12,6 +12,7 @@
   "homepage": "https://github.com/murillocamargo/Front-end-Boilerplate",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-csso": "^1.0.0",
     "gulp-flatten": "^0.2.0",
