@@ -11,6 +11,9 @@ module.exports = function (_options) {
         var isProduction = _options.args.production;
 
         return gulp.src(src)
+            .pipe($.cssGlobbing({
+                extensions: ['.scss']
+            }))
             .pipe($.if(!isProduction, $.sourcemaps.init()))
             .pipe($.sass().on('error', $.sass.logError))
             .pipe(_options.notify('Styles have been compiled'))
